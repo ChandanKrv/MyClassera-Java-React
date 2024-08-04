@@ -1,4 +1,4 @@
-package com.chandankrv.myclassera.security;
+package com.chandankrv.myclassera.service;
 
 import com.chandankrv.myclassera.model.Role;
 import com.chandankrv.myclassera.model.User;

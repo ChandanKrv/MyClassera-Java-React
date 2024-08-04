@@ -1,9 +1,7 @@
 package com.chandankrv.myclassera.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,6 +13,8 @@ import java.util.HashSet;
  */
 @Entity
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
