@@ -6,4 +6,5 @@ package com.chandankrv.myclassera.model;
  * Q. Problem Statement :
  */
 public class Subject {
+
 }
