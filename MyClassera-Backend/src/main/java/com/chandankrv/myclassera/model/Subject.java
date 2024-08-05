@@ -3,8 +3,6 @@ package com.chandankrv.myclassera.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Chandan on 04 August, 2024.
@@ -18,14 +16,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "subjects")
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
-
-    @ManyToMany(mappedBy = "subjects")
-    private List<Student> students = new ArrayList<>();
-
+    private String description;
 
 }
