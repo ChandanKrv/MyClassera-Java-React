@@ -24,6 +24,7 @@ public class SubjectService {
     @Autowired
     private StudentRepository studentRepository;
 
+
     public Subject addSubject(Subject subject) {
         return subjectRepository.save(subject);
     }

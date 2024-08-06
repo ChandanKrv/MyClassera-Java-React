@@ -1,10 +1,15 @@
 package com.chandankrv.myclassera.controller;
 
+import com.chandankrv.myclassera.exception.AlreadyEnrolledException;
+import com.chandankrv.myclassera.exception.StudentNotFoundException;
+import com.chandankrv.myclassera.exception.SubjectNotFoundException;
 import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.service.StudentService;
 import com.chandankrv.myclassera.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,14 +58,21 @@ public class StudentController {
         return studentService.deleteStudentById(id);
     }
 
-    @PostMapping("/{studentId}/enroll")
-    public Student enrollStudentInSubjects(@PathVariable int studentId, @RequestBody Set<Integer> subjectIds) {
-        return studentService.enrollStudentInSubjects(studentId, subjectIds);
-    }
-
     @GetMapping("/{id}/subjects")
     public Set<Subject> getSubjectsByStudentId(@PathVariable int id) {
         return studentService.getSubjectsByStudentId(id);
+    }
+
+    @PostMapping("/{studentId}/enroll")
+    public ResponseEntity<?> enrollStudentInSubjects(@PathVariable int studentId, @RequestBody Set<Integer> subjectIds) {
+        try {
+            Student updatedStudent = studentService.enrollStudentInSubjects(studentId, subjectIds);
+            return ResponseEntity.ok(updatedStudent);
+        } catch (StudentNotFoundException | SubjectNotFoundException | AlreadyEnrolledException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
+        }
     }
 
 }

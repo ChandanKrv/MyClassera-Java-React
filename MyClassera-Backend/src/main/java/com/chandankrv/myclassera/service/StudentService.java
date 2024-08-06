@@ -1,5 +1,8 @@
 package com.chandankrv.myclassera.service;
 
+import com.chandankrv.myclassera.exception.AlreadyEnrolledException;
+import com.chandankrv.myclassera.exception.StudentNotFoundException;
+import com.chandankrv.myclassera.exception.SubjectNotFoundException;
 import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.repository.StudentRepository;
@@ -13,11 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created by Chandan on 05 August, 2024.
- * --------------------------------------
- * Q. Problem Statement :
- */
 @Service
 public class StudentService {
     @Autowired
@@ -34,7 +32,7 @@ public class StudentService {
     }
 
     public Student getStudentById(int id) {
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + id));
     }
 
     public List<Student> getStudents() {
@@ -48,31 +46,38 @@ public class StudentService {
             old = op.get();
             old.setName(s.getName());
             old.setAddress(s.getAddress());
-
             studentRepository.save(old);
         } else {
-            return new Student();
+            throw new StudentNotFoundException("Student not found with ID: " + s.getId());
         }
         return old;
     }
 
     public String deleteStudentById(int id) {
+        if (!studentRepository.existsById(id)) {
+            throw new StudentNotFoundException("Student not found with ID: " + id);
+        }
         studentRepository.deleteById(id);
         return "Student data deleted successfully";
     }
 
-
     @Transactional
     public Student enrollStudentInSubjects(int studentId, Set<Integer> subjectIds) {
         Student student = getStudentById(studentId);
-        Set<Subject> subjects = new HashSet<>(subjectRepository.findAllById(subjectIds));
-        student.setSubjects(subjects);
+        Set<Subject> subjects = new HashSet<>();
+        for (Integer subjectId : subjectIds) {
+            Subject subject = subjectRepository.findById(subjectId)
+                    .orElseThrow(() -> new SubjectNotFoundException("Subject not found with ID: " + subjectId));
+            if (student.getSubjects().contains(subject)) {
+                throw new AlreadyEnrolledException("Student is already enrolled in subject with ID: " + subjectId);
+            }
+            subjects.add(subject);
+        }
+        student.getSubjects().addAll(subjects);
         return studentRepository.save(student);
     }
 
     public Set<Subject> getSubjectsByStudentId(int id) {
         return getStudentById(id).getSubjects();
     }
-
 }
-
