@@ -1,12 +1,15 @@
 package com.chandankrv.myclassera.service;
 
+import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
+import com.chandankrv.myclassera.repository.StudentRepository;
 import com.chandankrv.myclassera.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by Chandan on 05 August, 2024.
@@ -17,6 +20,9 @@ import java.util.Optional;
 public class SubjectService {
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     public Subject addSubject(Subject subject) {
         return subjectRepository.save(subject);
@@ -53,6 +59,12 @@ public class SubjectService {
     public String deleteSubjectById(int id) {
         subjectRepository.deleteById(id);
         return "Subject deleted successfully";
+    }
+
+
+    public Set<Student> getStudentsBySubjectId(int subjectId) {
+        Subject subject = getSubjectById(subjectId);
+        return subject.getStudents();
     }
 
 }
