@@ -76,10 +76,15 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-
+    /*public Set<Subject> getSubjectsByStudentId(int id) {
+        return studentRepository.findSubjectsByStudentId(id);
+    }*/
     public Set<Subject> getSubjectsByStudentId(int id) {
-        Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + id));
-        return student.getSubjects();
+        // Check if student exists
+        if (!studentRepository.existsById(id)) {
+            throw new StudentNotFoundException("Student not found with ID: " + id);
+        }
+        return studentRepository.findSubjectsByStudentId(id);
     }
 
 }

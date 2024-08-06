@@ -1,5 +1,7 @@
 package com.chandankrv.myclassera.service;
 
+import com.chandankrv.myclassera.exception.StudentNotFoundException;
+import com.chandankrv.myclassera.exception.SubjectNotFoundException;
 import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.repository.StudentRepository;
@@ -62,10 +64,12 @@ public class SubjectService {
         return "Subject deleted successfully";
     }
 
-
-    public Set<Student> getStudentsBySubjectId(int subjectId) {
-        Subject subject = getSubjectById(subjectId);
-        return subject.getStudents();
+    public Set<Student> getStudentsBySubjectId(int id) {
+        // Check if student exists
+        if (!subjectRepository.existsById(id)) {
+            throw new SubjectNotFoundException("Subject not found with ID: " + id);
+        }
+        return subjectRepository.findStudentsBySubjectId(id);
     }
 
 }
