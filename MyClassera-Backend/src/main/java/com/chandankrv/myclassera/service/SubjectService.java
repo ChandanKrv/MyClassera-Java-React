@@ -65,7 +65,7 @@ public class SubjectService {
     }
 
     public Set<Student> getStudentsBySubjectId(int id) {
-        // Check if student exists
+        // Check if subject exists
         if (!subjectRepository.existsById(id)) {
             throw new SubjectNotFoundException("Subject not found with ID: " + id);
         }
