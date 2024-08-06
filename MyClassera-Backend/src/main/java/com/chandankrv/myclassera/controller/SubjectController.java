@@ -5,6 +5,8 @@ import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.service.StudentService;
 import com.chandankrv.myclassera.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -80,11 +82,18 @@ public class SubjectController {
     private StudentService studentService;
 
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity<List<Subject>> getSubjects() {
         List<Subject> subjects = subjectService.getSubjects();
         return ResponseEntity.ok(subjects);
+    }*/
+
+    @GetMapping("/all")
+    public ResponseEntity<Page<Subject>> getSubjects(Pageable pageable) {
+        Page<Subject> subjects = subjectService.getSubjects(pageable);
+        return ResponseEntity.ok(subjects);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Subject> getSubjectById(@PathVariable int id) {
@@ -124,5 +133,7 @@ public class SubjectController {
     public ResponseEntity<Set<Student>> getStudentsBySubjectId(@PathVariable int id) {
         Set<Student> students = subjectService.getStudentsBySubjectId(id);
         return ResponseEntity.ok(students);
+
+
     }
 }

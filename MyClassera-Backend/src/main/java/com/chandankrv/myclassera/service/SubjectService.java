@@ -1,12 +1,13 @@
 package com.chandankrv.myclassera.service;
 
-import com.chandankrv.myclassera.exception.StudentNotFoundException;
 import com.chandankrv.myclassera.exception.SubjectNotFoundException;
 import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.repository.StudentRepository;
 import com.chandankrv.myclassera.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,8 +40,11 @@ public class SubjectService {
         return subjectRepository.findById(id).orElse(null);
     }
 
-    public List<Subject> getSubjects() {
-        return subjectRepository.findAll();
+    /* public List<Subject> getSubjects() {
+         return subjectRepository.findAll();
+     }*/
+    public Page<Subject> getSubjects(Pageable pageable) {
+        return subjectRepository.findAll(pageable);
     }
 
 
@@ -59,9 +63,8 @@ public class SubjectService {
         return old;
     }
 
-    public String deleteSubjectById(int id) {
+    public void deleteSubjectById(int id) {
         subjectRepository.deleteById(id);
-        return "Subject deleted successfully";
     }
 
     public Set<Student> getStudentsBySubjectId(int id) {
