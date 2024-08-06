@@ -32,7 +32,7 @@ export const enrollStudentInSubjects = (studentId, subjectIds) => {
 // Fetch all subjects
 export const getSubjects = (page = 0, size = 12) => {
   return api.get(`/subject/all?page=${page}&size=${size}`);
-};
+}; 
 
 // Fetch a subject by ID
 export const getSubjectById = (id) => {

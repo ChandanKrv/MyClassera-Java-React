@@ -1,3 +1,5 @@
+
+
 const Login = () => {
   return (
     <div className="flex items-start justify-center min-h-screen pt-10 bg-gray-100">
@@ -9,10 +11,10 @@ const Login = () => {
               className="block text-gray-700 text-lg font-bold mb-2"
               htmlFor="email"
             >
-              Email
+              Username or Email
             </label>
             <input
-              type="email"
+              type="text"
               id="email"
               className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
