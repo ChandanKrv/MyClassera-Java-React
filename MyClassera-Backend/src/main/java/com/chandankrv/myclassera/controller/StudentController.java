@@ -18,49 +18,124 @@ import java.util.Set;
 /**
  * Created by Chandan on 05 August, 2024.
  * --------------------------------------
- * Q. Problem Statement :
+ * Controller for managing student-related operations
  */
+
+/*
+Endpoints for Students:
+
+1. Get All Students
+   GET: http://localhost:8080/api/student/all
+
+2. Get a Student by ID
+   GET: http://localhost:8080/api/student/{id}
+   Example: http://localhost:8080/api/student/1
+
+3. Add a Student
+   POST: http://localhost:8080/api/student/add
+   Pass JSON data in the request body:
+   {
+       "name": "Rahul",
+       "email": "Rahul@gmail.com",
+       "address": "Delhi"
+   }
+
+4. Add Multiple Students
+   POST: http://localhost:8080/api/student/addMultiple
+   Pass an array of students in the request body:
+   [
+       {
+           "name": "Chandan",
+           "email": "chandan@gmail.com",
+           "address": "Kolkata"
+       },
+       {
+           "name": "Ravi",
+           "email": "ravi@gmail.com",
+           "address": "Delhi"
+       }
+   ]
+
+5. Update a Student
+   PUT: http://localhost:8080/api/student/update
+   Pass JSON data in the request body:
+   {
+       "id": 2,
+       "name": "Chandan",
+       "email": "chandan@gmail.com",
+       "address": "Kolkata, India"
+   }
+
+6. Delete a Student
+   DELETE: http://localhost:8080/api/student/delete/{id}
+   Example: http://localhost:8080/api/student/delete/7
+   (7 is the Student ID)
+
+7. Get Subjects by Student ID
+   GET: http://localhost:8080/api/student/{id}/subjects
+   Example: http://localhost:8080/api/student/1/subjects
+
+8. Enroll Student in Subjects
+   POST: http://localhost:8080/api/student/{studentId}/enroll
+   Pass a set of subject IDs in the request body:
+   Example: http://localhost:8080/api/student/1/enroll
+   Body: [1, 2, 3]
+ */
+
 @RestController
+@RequestMapping("/api/student")
 public class StudentController {
+
     @Autowired
     private StudentService studentService;
 
     @Autowired
     private SubjectService subjectService;
 
-    @PostMapping("/addStudent")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    @GetMapping("/all")
+    public ResponseEntity<List<Student>> getStudents() {
+        List<Student> students = studentService.getStudents();
+        return ResponseEntity.ok(students);
     }
 
-    @PostMapping("/addStudents")
-    public List<Student> addStudent(@RequestBody List<Student> students) {
-        return studentService.addStudents(students);
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable int id) {
+        Student student = studentService.getStudentById(id);
+        if (student != null) {
+            return ResponseEntity.ok(student);
+        } else {
+            throw new StudentNotFoundException("Student not found with ID: " + id);
+        }
     }
 
-    @GetMapping("/student/{id}")
-    public Student getStudentById(@PathVariable int id) {
-        return studentService.getStudentById(id);
+    @PostMapping("/add")
+    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+        Student newStudent = studentService.addStudent(student);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newStudent);
     }
 
-    @GetMapping({"/students", "/"})
-    public List<Student> getStudents() {
-        return studentService.getStudents();
+    @PostMapping("/addMultiple")
+    public ResponseEntity<List<Student>> addStudents(@RequestBody List<Student> students) {
+        List<Student> newStudents = studentService.addStudents(students);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newStudents);
     }
 
-    @PutMapping("/updateStudent")
-    public Student updateStudent(@RequestBody Student s) {
-        return studentService.updateStudent(s);
+    @PutMapping("/update")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+        Student updatedStudent = studentService.updateStudent(student);
+        return ResponseEntity.ok(updatedStudent);
     }
 
-    @DeleteMapping("/student/{id}")
-    public String deleteStudent(@PathVariable int id) {
-        return studentService.deleteStudentById(id);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable int id) {
+        studentService.deleteStudentById(id);
+        return ResponseEntity.ok("Student deleted successfully with ID: " + id);
     }
 
     @GetMapping("/{id}/subjects")
-    public Set<Subject> getSubjectsByStudentId(@PathVariable int id) {
-        return studentService.getSubjectsByStudentId(id);
+    public ResponseEntity<Set<Subject>> getSubjectsByStudentId(@PathVariable int id) {
+        Set<Subject> subjects = studentService.getSubjectsByStudentId(id);
+        return ResponseEntity.ok(subjects);
     }
 
     @PostMapping("/{studentId}/enroll")
@@ -74,6 +149,4 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
-
 }
-
