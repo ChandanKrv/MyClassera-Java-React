@@ -1,5 +1,6 @@
+// src/components/StudentTable.jsx
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { getStudents } from "../api/api"; // Adjust path as needed
 
 const StudentTable = () => {
   const [students, setStudents] = useState([]);
@@ -9,9 +10,7 @@ const StudentTable = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8080/api/student/all"
-        );
+        const response = await getStudents();
         setStudents(response.data);
       } catch (err) {
         setError("Error fetching data");
