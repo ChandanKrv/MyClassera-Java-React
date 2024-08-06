@@ -1,6 +1,3 @@
-// src/components/Login.jsx
-import React from "react";
-
 const Login = () => {
   return (
     <div className="flex items-start justify-center min-h-screen pt-10 bg-gray-100">
