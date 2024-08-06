@@ -53,12 +53,11 @@ public class StudentService {
         return old;
     }
 
-    public String deleteStudentById(int id) {
+    public void deleteStudentById(int id) {
         if (!studentRepository.existsById(id)) {
             throw new StudentNotFoundException("Student not found with ID: " + id);
         }
         studentRepository.deleteById(id);
-        return "Student data deleted successfully";
     }
 
     @Transactional
@@ -77,7 +76,10 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+
     public Set<Subject> getSubjectsByStudentId(int id) {
-        return getStudentById(id).getSubjects();
+        Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + id));
+        return student.getSubjects();
     }
+
 }
