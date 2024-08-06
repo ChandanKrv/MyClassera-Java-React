@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,57 +19,6 @@ import java.util.Set;
  * Created by Chandan on 05 August, 2024.
  * --------------------------------------
  * Controller for managing subject-related operations
- */
-
-/*
-Endpoints for Subjects:
-
-1. Get All Subjects
-   GET: http://localhost:8080/api/subject/all
-
-2. Get a Subject by ID
-   GET: http://localhost:8080/api/subject/{id}
-   Example: http://localhost:8080/api/subject/1
-
-3. Add a Subject
-   POST: http://localhost:8080/api/subject/add
-   Pass JSON data in the request body:
-   {
-       "name": "Mathematics",
-       "description": "Basic Mathematics course"
-   }
-
-4. Add Multiple Subjects
-   POST: http://localhost:8080/api/subject/addMultiple
-   Pass an array of subjects in the request body:
-   [
-       {
-           "name": "Physics",
-           "description": "Basic Physics course"
-       },
-       {
-           "name": "Chemistry",
-           "description": "Basic Chemistry course"
-       }
-   ]
-
-5. Update a Subject
-   PUT: http://localhost:8080/api/subject/update
-   Pass JSON data in the request body:
-   {
-       "id": 2,
-       "name": "Advanced Mathematics",
-       "description": "Advanced Mathematics course"
-   }
-
-6. Delete a Subject
-   DELETE: http://localhost:8080/api/subject/delete/{id}
-   Example: http://localhost:8080/api/subject/delete/1
-   (1 is the Subject ID)
-
-7. Get Students by Subject ID
-   GET: http://localhost:8080/api/subject/{id}/students
-   Example: http://localhost:8080/api/subject/1/students
  */
 
 @RestController
@@ -81,19 +31,11 @@ public class SubjectController {
     @Autowired
     private StudentService studentService;
 
-
-    /*@GetMapping("/all")
-    public ResponseEntity<List<Subject>> getSubjects() {
-        List<Subject> subjects = subjectService.getSubjects();
-        return ResponseEntity.ok(subjects);
-    }*/
-
     @GetMapping("/all")
     public ResponseEntity<Page<Subject>> getSubjects(Pageable pageable) {
         Page<Subject> subjects = subjectService.getSubjects(pageable);
         return ResponseEntity.ok(subjects);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Subject> getSubjectById(@PathVariable int id) {
@@ -105,24 +47,28 @@ public class SubjectController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<Subject> addSubject(@RequestBody Subject subject) {
         Subject newSubject = subjectService.addSubject(subject);
         return ResponseEntity.status(HttpStatus.CREATED).body(newSubject);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addMultiple")
     public ResponseEntity<List<Subject>> addSubjects(@RequestBody List<Subject> subjects) {
         List<Subject> newSubjects = subjectService.addSubjects(subjects);
         return ResponseEntity.status(HttpStatus.CREATED).body(newSubjects);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Subject> updateSubject(@RequestBody Subject subject) {
         Subject updatedSubject = subjectService.updateSubject(subject);
         return ResponseEntity.ok(updatedSubject);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteSubject(@PathVariable int id) {
         subjectService.deleteSubjectById(id);
@@ -133,7 +79,5 @@ public class SubjectController {
     public ResponseEntity<Set<Student>> getStudentsBySubjectId(@PathVariable int id) {
         Set<Student> students = subjectService.getStudentsBySubjectId(id);
         return ResponseEntity.ok(students);
-
-
     }
 }

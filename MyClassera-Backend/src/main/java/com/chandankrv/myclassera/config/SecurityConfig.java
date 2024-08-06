@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,10 +28,13 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
-                .authorizeRequests()
-                .requestMatchers("/api/**").authenticated()
-                .requestMatchers("/auth/login").permitAll().anyRequest().authenticated()
-                .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/api/student/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/subject/add", "/api/subject/addMultiple", "/api/subject/update", "/api/subject/delete/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
