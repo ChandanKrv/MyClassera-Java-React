@@ -3,6 +3,8 @@ package com.chandankrv.myclassera.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 /**
  * Created by Chandan on 04 August, 2024.
  * --------------------------------------
@@ -24,6 +26,13 @@ public class Student {
     private String email;
     private String address;
 
-    private int subject_id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_subjects",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private Set<Subject> subjects;
 }
 

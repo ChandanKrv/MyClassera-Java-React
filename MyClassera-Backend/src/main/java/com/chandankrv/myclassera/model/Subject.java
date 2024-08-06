@@ -3,8 +3,10 @@ package com.chandankrv.myclassera.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
 
-/**
+
+/**de
  * Created by Chandan on 04 August, 2024.
  * --------------------------------------
  * Q. Problem Statement :
@@ -24,4 +26,6 @@ public class Subject {
     private String name;
     private String description;
 
+    @ManyToMany(mappedBy = "subjects")
+    private Set<Student> students;
 }
