@@ -1,6 +1,5 @@
 package com.chandankrv.myclassera.service;
 
-import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class SubjectService {
     }
 
 
-    public Subject editStudent(Subject s) {
+    public Subject updateSubject(Subject s) {
         Subject old;
         Optional<Subject> op = subjectRepository.findById(s.getId());
         if (op.isPresent()) {
@@ -51,7 +50,7 @@ public class SubjectService {
         return old;
     }
 
-    public String deleteSubject(int id) {
+    public String deleteSubjectById(int id) {
         subjectRepository.deleteById(id);
         return "Subject deleted successfully";
     }

@@ -3,11 +3,7 @@ package com.chandankrv.myclassera.controller;
 import com.chandankrv.myclassera.model.Subject;
 import com.chandankrv.myclassera.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,14 +13,38 @@ import java.util.List;
  * Q. Problem Statement :
  */
 @RestController
-@RequestMapping("/subjects")
-
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @GetMapping
-    public ResponseEntity<List<Subject>> getAllSubjects() {
-        return new ResponseEntity<>(subjectService.getAllSubjects(), HttpStatus.OK);
+    @PostMapping("/addSubject")
+    public Subject addSubject(@RequestBody Subject subject) {
+        return subjectService.addSubject(subject);
     }
+
+    @PostMapping("/addSubjects")
+    public List<Subject> addSubject(@RequestBody List<Subject> subjects) {
+        return subjectService.addSubjects(subjects);
+    }
+
+    @GetMapping("/subject/{id}")
+    public Subject getSubjectById(@PathVariable int id) {
+        return subjectService.getSubjectById(id);
+    }
+
+    @GetMapping("/subjects")
+    public List<Subject> getSubjects() {
+        return subjectService.getSubjects();
+    }
+
+    @PutMapping("/updateSubject")
+    public Subject updateSubject(@RequestBody Subject s) {
+        return subjectService.updateSubject(s);
+    }
+
+    @DeleteMapping("/subject/{id}")
+    public String deleteSubject(@PathVariable int id) {
+        return subjectService.deleteSubjectById(id);
+    }
+
 }

@@ -34,7 +34,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student editStudent(Student s) {
+    public Student updateStudent(Student s) {
         Student old;
         Optional<Student> op = studentRepository.findById(s.getId());
         if (op.isPresent()) {
@@ -49,7 +49,7 @@ public class StudentService {
         return old;
     }
 
-    public String deleteStudent(int id) {
+    public String deleteStudentById(int id) {
         studentRepository.deleteById(id);
         return "Student data deleted successfully";
     }

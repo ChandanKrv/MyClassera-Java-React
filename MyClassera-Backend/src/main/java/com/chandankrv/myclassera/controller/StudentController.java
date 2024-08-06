@@ -3,8 +3,6 @@ package com.chandankrv.myclassera.controller;
 import com.chandankrv.myclassera.model.Student;
 import com.chandankrv.myclassera.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,19 +13,40 @@ import java.util.List;
  * Q. Problem Statement :
  */
 @RestController
-@RequestMapping("/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        return new ResponseEntity<>(studentService.createStudent(student), HttpStatus.CREATED);
+    @PostMapping("/addStudent")
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents() {
-        return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
+    @PostMapping("/addStudents")
+    public List<Student> addStudent(@RequestBody List<Student> students) {
+        return studentService.addStudents(students);
     }
+
+    @GetMapping("/student/{id}")
+    public Student getStudentById(@PathVariable int id) {
+        return studentService.getStudentById(id);
+    }
+
+    @GetMapping("/students")
+    public List<Student> getStudents() {
+        return studentService.getStudents();
+    }
+
+    @PutMapping("/updateStudent")
+    public Student updateStudent(@RequestBody Student s) {
+        return studentService.updateStudent(s);
+    }
+
+    @DeleteMapping("/student/{id}")
+    public String deleteStudent(@PathVariable int id) {
+        return studentService.deleteStudentById(id);
+    }
+
+
 }
 
