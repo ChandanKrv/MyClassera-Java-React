@@ -11,6 +11,5 @@ root.render(
     <AuthProvider>
       <App />
     </AuthProvider>
-    <Footer />
   </React.StrictMode>
 );
