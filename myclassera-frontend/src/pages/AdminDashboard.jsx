@@ -2,15 +2,17 @@
 import React from "react";
 import SubjectsTable from "../components/SubjectsTable";
 import StudentsTable from "../components/StudentsTable";
-import CoursesEnrolledTable from "../components/CoursesEnrolledTable";
+import SubjectsEnrolledTable from "../components/SubjectsEnrolledTable";
+import EnrollInSubjects from "../components/EnrollInSubjects";
 
 const AdminDashboard = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">Admin Dashboard</h1>
-      <SubjectsTable />
+      <EnrollInSubjects />
+      <SubjectsEnrolledTable />
       <StudentsTable />
-      <CoursesEnrolledTable />
+      <SubjectsTable />
     </div>
   );
 };
