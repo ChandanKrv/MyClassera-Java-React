@@ -1,75 +1,136 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api";
+// Base URL for API requests
+const API_BASE_URL = "http://localhost:8080";
 
-const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-// Fetch all students
-export const getStudents = () => {
-  return api.get("/student/all");
+// Utility function to get authentication headers
+const getAuthHeaders = () => {
+  const token = localStorage.getItem("token");
+  return {
+    Authorization: token ? `Bearer ${token}` : "",
+  };
 };
 
-// Fetch a student by ID
-export const getStudentById = (id) => {
-  return api.get(`/student/${id}`);
+// Authentication
+export const login = async (email, password) => {
+  const response = await axios.post(`${API_BASE_URL}/auth/login`, {
+    email,
+    password,
+  });
+  return response.data;
 };
 
-// Fetch subjects by student ID
-export const getSubjectsByStudentId = (id) => {
-  return api.get(`/student/${id}/subjects`);
+// Subjects
+export const fetchSubjects = async (page = 1) => {
+  const response = await axios.get(
+    `${API_BASE_URL}/api/subject/all?page=${page - 1}&size=10`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Enroll a student in subjects
-export const enrollStudentInSubjects = (studentId, subjectIds) => {
-  return api.post(`/student/${studentId}/enroll`, subjectIds);
+export const addSubject = async (subject) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/api/subject/add`,
+    subject,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Fetch all subjects
-export const getSubjects = (page = 0, size = 12) => {
-  return api.get(`/subject/all?page=${page}&size=${size}`);
-}; 
-
-// Fetch a subject by ID
-export const getSubjectById = (id) => {
-  return api.get(`/subject/${id}`);
+export const updateSubject = async (subject) => {
+  const response = await axios.put(
+    `${API_BASE_URL}/api/subject/update`,
+    subject,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Fetch students by subject ID
-export const getStudentsBySubjectId = (id) => {
-  return api.get(`/subject/${id}/students`);
+export const deleteSubject = async (id) => {
+  const response = await axios.delete(
+    `${API_BASE_URL}/api/subject/delete/${id}`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Add a new student
-export const addStudent = (student) => {
-  return api.post("/student/add", student);
+// Students
+export const fetchStudents = async () => {
+  const response = await axios.get(`${API_BASE_URL}/api/student/all`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
 };
 
-// Add a new subject
-export const addSubject = (subject) => {
-  return api.post("/subject/add", subject);
+export const addStudent = async (student) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/api/student/add`,
+    student,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Update a student
-export const updateStudent = (student) => {
-  return api.put("/student/update", student);
+export const updateStudent = async (student) => {
+  const response = await axios.put(
+    `${API_BASE_URL}/api/student/update`,
+    student,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Update a subject
-export const updateSubject = (subject) => {
-  return api.put("/subject/update", subject);
+export const deleteStudent = async (id) => {
+  const response = await axios.delete(
+    `${API_BASE_URL}/api/student/delete/${id}`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Delete a student by ID
-export const deleteStudentById = (id) => {
-  return api.delete(`/student/delete/${id}`);
+// Enrollments
+export const enrollStudentInSubjects = async (studentId, subjectIds) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/api/student/${studentId}/enroll`,
+    subjectIds,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };
 
-// Delete a subject by ID
-export const deleteSubjectById = (id) => {
-  return api.delete(`/subject/delete/${id}`);
+export const fetchSubjectsByStudentId = async (id) => {
+  const response = await axios.get(
+    `${API_BASE_URL}/api/student/${id}/subjects`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
+};
+
+export const fetchStudentsBySubjectId = async (id) => {
+  const response = await axios.get(
+    `${API_BASE_URL}/api/subject/${id}/students`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
 };

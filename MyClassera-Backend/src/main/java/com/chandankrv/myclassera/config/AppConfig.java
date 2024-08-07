@@ -28,7 +28,7 @@ public class AppConfig {
                 .roles("ADMIN")
                 .build();
         UserDetails user = User.builder()
-                .username("user")
+                .username("student")
                 .password(passwordEncoder().encode("pass"))
                 .roles("USER")
                 .build();

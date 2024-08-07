@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getSubjects } from "../api/api"; // Make sure to use the correct path for your api.js
+import { getSubjects } from "../../api/api"; // Make sure to use the correct path for your api.js
 import { Link } from "react-router-dom";
 import "./Homepage.css"; // Create this file for custom styles
 

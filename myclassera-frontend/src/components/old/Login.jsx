@@ -1,11 +1,29 @@
-
+import { useState } from "react";
+import { login } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await login({ email, password });
+      localStorage.setItem("token", response.data.jwtToken);
+      navigate("/dashboard");
+    } catch (error) {
+      setError("Invalid username or password");
+    }
+  };
+
   return (
     <div className="flex items-start justify-center min-h-screen pt-10 bg-gray-100">
       <div className="bg-white p-12 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
         <h1 className="text-4xl font-bold mb-6 text-center">Login</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label
               className="block text-gray-700 text-lg font-bold mb-2"
@@ -16,6 +34,8 @@ const Login = () => {
             <input
               type="text"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -29,9 +49,12 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
+          {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
           <div className="flex items-center justify-between">
             <button
               type="submit"

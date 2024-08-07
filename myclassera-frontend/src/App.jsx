@@ -1,21 +1,22 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Homepage from "./components/Homepage";
-import Layout from "./components/Layout";
-import Signup from "./components/Signup";
+// App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminDashboard from "./pages/AdminDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
+import Login from "./pages/Login"; // Add this if you have a Login page
+import NotFound from "./pages/NotFound"; // Add this if you have a NotFound page
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
-};
+}
 
 export default App;
