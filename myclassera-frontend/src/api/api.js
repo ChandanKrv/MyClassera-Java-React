@@ -3,6 +3,8 @@ import axios from "axios";
 // Base URL for API requests
 const API_BASE_URL = "http://localhost:8080";
 
+export const HARD_CODED_STUDENT_ID = 1;
+
 // Utility function to get authentication headers
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
