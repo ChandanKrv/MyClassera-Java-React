@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   fetchStudents,
   fetchSubjects,
   enrollStudentInSubjects,
+  fetchSubjectsByStudentId,
+  logoutUser,
 } from "../api/api";
 
 const EnrollInSubjects = () => {
@@ -10,6 +13,8 @@ const EnrollInSubjects = () => {
   const [subjects, setSubjects] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState("");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [enrolledSubjects, setEnrolledSubjects] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +30,20 @@ const EnrollInSubjects = () => {
     fetchData();
   }, []);
 
-  const handleStudentChange = (e) => {
-    setSelectedStudent(e.target.value);
+  const handleStudentChange = async (e) => {
+    const studentId = e.target.value;
+    setSelectedStudent(studentId);
+    setSelectedSubjects([]);
+    setEnrolledSubjects([]);
+
+    if (studentId) {
+      try {
+        const enrolledSubjectsData = await fetchSubjectsByStudentId(studentId);
+        setEnrolledSubjects(enrolledSubjectsData.map((subject) => subject.id));
+      } catch (error) {
+        console.error("Error fetching enrolled subjects:", error);
+      }
+    }
   };
 
   const handleSubjectChange = (e) => {
@@ -43,16 +60,28 @@ const EnrollInSubjects = () => {
     try {
       await enrollStudentInSubjects(selectedStudent, selectedSubjects);
       alert("Enrolled successfully!");
-      setSelectedStudent("");
-      setSelectedSubjects([]);
+      window.location.reload(); // Refresh the page
     } catch (error) {
       console.error("Error enrolling student:", error);
       alert("Failed to enroll student.");
     }
   };
 
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/");
+  };
+
   return (
     <div className="p-6">
+      <div className="flex justify-end">
+        <button
+          onClick={handleLogout}
+          className="text-blue-500 hover:underline"
+        >
+          Logout
+        </button>
+      </div>
       <h2 className="text-2xl font-bold mb-4">Enroll Student in Subjects</h2>
       <form
         onSubmit={handleSubmit}
@@ -89,10 +118,15 @@ const EnrollInSubjects = () => {
                   value={subject.id}
                   onChange={handleSubjectChange}
                   className="mr-2"
+                  disabled={
+                    !selectedStudent || enrolledSubjects.includes(subject.id)
+                  }
                 />
                 <label
                   htmlFor={`subject-${subject.id}`}
-                  className="text-gray-700"
+                  className={`text-gray-700 ${
+                    enrolledSubjects.includes(subject.id) ? "line-through" : ""
+                  }`}
                 >
                   {subject.name}
                 </label>
@@ -104,6 +138,7 @@ const EnrollInSubjects = () => {
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+          disabled={!selectedStudent}
         >
           Enroll
         </button>

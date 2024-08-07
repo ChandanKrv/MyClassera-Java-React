@@ -87,4 +87,25 @@ public class StudentService {
         return studentRepository.findSubjectsByStudentId(id);
     }
 
+
+    @Transactional
+    public void unenrollStudentFromSubject(int studentId, int subjectId) throws StudentNotFoundException, SubjectNotFoundException {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + studentId));
+        Subject subject = subjectRepository.findById(subjectId)
+                .orElseThrow(() -> new SubjectNotFoundException("Subject not found with ID: " + subjectId));
+
+        if (student.getSubjects().contains(subject)) {
+            student.getSubjects().remove(subject);
+            studentRepository.save(student);
+        }
+
+        if (subject.getStudents().contains(student)) {
+            subject.getStudents().remove(student);
+            subjectRepository.save(subject);
+        }
+
+
+    }
+
 }

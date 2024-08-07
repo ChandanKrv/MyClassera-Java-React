@@ -6,9 +6,19 @@ const API_BASE_URL = "http://localhost:8080";
 // Utility function to get authentication headers
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
+  //console.log("JwtToken:", token);
   return {
     Authorization: token ? `Bearer ${token}` : "",
   };
+};
+
+export const printJwtToken = () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    console.log("JWT Token:", token);
+  } else {
+    console.log("No JWT Token found in localStorage.");
+  }
 };
 
 // Authentication
@@ -18,6 +28,11 @@ export const login = async (email, password) => {
     password,
   });
   return response.data;
+};
+
+export const logoutUser = () => {
+  // Clear the local storage token
+  localStorage.removeItem("token");
 };
 
 // Subjects
@@ -31,6 +46,16 @@ export const fetchSubjects = async (page = 1) => {
   return response.data;
 };
 
+// Students
+export const fetchStudents = async (page = 1) => {
+  const response = await axios.get(
+    `${API_BASE_URL}/api/student/all?page=${page - 1}&size=10`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
+};
 export const addSubject = async (subject) => {
   const response = await axios.post(
     `${API_BASE_URL}/api/subject/add`,
@@ -63,14 +88,6 @@ export const deleteSubject = async (id) => {
   return response.data;
 };
 
-// Students
-export const fetchStudents = async () => {
-  const response = await axios.get(`${API_BASE_URL}/api/student/all`, {
-    headers: getAuthHeaders(),
-  });
-  return response.data;
-};
-
 export const addStudent = async (student) => {
   const response = await axios.post(
     `${API_BASE_URL}/api/student/add`,
@@ -82,25 +99,36 @@ export const addStudent = async (student) => {
   return response.data;
 };
 
-export const updateStudent = async (student) => {
+/*  export const updateStudent = async (student) => {
   const response = await axios.put(
-    `${API_BASE_URL}/api/student/update`,
-    student,
+    `${API_BASE_URL}/api/student/update`, student,
     {
       headers: getAuthHeaders(),
     }
   );
   return response.data;
+};  */
+
+export const updateStudent = async (student) => {
+  try {
+    await axios.put(`${API_BASE_URL}/api/student/update`, student, {
+      headers: getAuthHeaders(),
+    });
+  } catch (error) {
+    console.error("Error updating student:", error);
+    throw error;
+  }
 };
 
 export const deleteStudent = async (id) => {
-  const response = await axios.delete(
-    `${API_BASE_URL}/api/student/delete/${id}`,
-    {
-      headers: getAuthHeaders(),
-    }
-  );
-  return response.data;
+  try {
+    await axios.delete(`${API_BASE_URL}/student/delete/${id}`, {
+      headers: getAuthHeaders(), // Add authorization headers
+    });
+  } catch (error) {
+    console.error("Error deleting student:", error);
+    throw error;
+  }
 };
 
 // Enrollments
@@ -108,6 +136,16 @@ export const enrollStudentInSubjects = async (studentId, subjectIds) => {
   const response = await axios.post(
     `${API_BASE_URL}/api/student/${studentId}/enroll`,
     subjectIds,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  return response.data;
+};
+
+export const unenrollStudentFromSubject = async (studentId, subjectId) => {
+  const response = await axios.delete(
+    `${API_BASE_URL}/api/student/${studentId}/unenroll/${subjectId}`,
     {
       headers: getAuthHeaders(),
     }

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { fetchStudents, fetchSubjectsByStudentId } from "../api/api";
+import { MdDeleteForever } from "react-icons/md";
+
+import {
+  fetchStudents,
+  fetchSubjectsByStudentId,
+  unenrollStudentFromSubject,
+} from "../api/api";
 
 const SubjectsEnrolledTable = () => {
   const [students, setStudents] = useState([]);
@@ -23,6 +29,20 @@ const SubjectsEnrolledTable = () => {
     };
     getStudents();
   }, []);
+
+  const handleUnenroll = async (studentId, subjectId) => {
+    try {
+      await unenrollStudentFromSubject(studentId, subjectId);
+      setEnrollments((prevEnrollments) => ({
+        ...prevEnrollments,
+        [studentId]: prevEnrollments[studentId].filter(
+          (subject) => subject.id !== subjectId
+        ),
+      }));
+    } catch (error) {
+      console.error("Error unenrolling student from subject:", error);
+    }
+  };
 
   return (
     <div className="p-6">
@@ -52,7 +72,20 @@ const SubjectsEnrolledTable = () => {
                     {enrollments[student.id] ? (
                       <ul className="list-disc pl-5">
                         {enrollments[student.id].map((subject) => (
-                          <li key={subject.id}>{subject.name}</li>
+                          <li
+                            key={subject.id}
+                            className="flex justify-between items-center"
+                          >
+                            {subject.name}
+                            <button
+                              onClick={() =>
+                                handleUnenroll(student.id, subject.id)
+                              }
+                              className="text-red-500 hover:text-red-700 ml-2"
+                            >
+                              <MdDeleteForever />
+                            </button>
+                          </li>
                         ))}
                       </ul>
                     ) : (

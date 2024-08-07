@@ -30,6 +30,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/student/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/subject/add", "/api/subject/addMultiple", "/api/subject/update", "/api/subject/delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

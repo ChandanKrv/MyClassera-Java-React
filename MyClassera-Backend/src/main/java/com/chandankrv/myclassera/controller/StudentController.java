@@ -94,4 +94,19 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
         }
     }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{studentId}/unenroll/{subjectId}")
+    public ResponseEntity<?> unenrollStudentFromSubject(@PathVariable int studentId, @PathVariable int subjectId) {
+        try {
+            studentService.unenrollStudentFromSubject(studentId, subjectId);
+            return ResponseEntity.ok("Subject unenrolled successfully.");
+        } catch (StudentNotFoundException | SubjectNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
+        }
+    }
+
 }
