@@ -16,18 +16,18 @@ const Login = () => {
 
     try {
       const response = await login(email, password);
-      const { jwtToken, username } = response.data;
+      const { jwtToken, username } = response; // Adjust according to actual response structure
 
-      // Store the JWT token in localStorage or sessionStorage
+      // Store the JWT token in localStorage
       localStorage.setItem("token", jwtToken);
 
       // Determine the role and navigate accordingly
       if (username === "admin") {
-        navigate("/admin-dashboards"); // Redirect to AdminDashboard
+        navigate("/admin-dashboard"); // Redirect to AdminDashboard
       } else if (username === "student") {
         navigate("/student-dashboard"); // Redirect to StudentDashboard
       } else {
-        setErrorMessage("Failed!! Please check your credentials.");
+        setErrorMessage("Invalid role.");
       }
     } catch (error) {
       setErrorMessage("Login failed. Please check your credentials.");
@@ -41,7 +41,7 @@ const Login = () => {
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
         <input
           type="text"
-          placeholder="Username or Email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="block w-full mb-4 px-4 py-2 border rounded"

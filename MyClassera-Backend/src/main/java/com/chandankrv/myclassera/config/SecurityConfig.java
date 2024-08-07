@@ -25,10 +25,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http.csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> authorize
+                .cors(); // Enable CORS
+
+        http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/api/student/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/subject/add", "/api/subject/addMultiple", "/api/subject/update", "/api/subject/delete/**").hasRole("ADMIN")
@@ -41,3 +41,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
