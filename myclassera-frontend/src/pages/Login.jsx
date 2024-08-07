@@ -24,7 +24,7 @@ const Login = () => {
       // Determine the role and navigate accordingly
       if (username === "admin") {
         navigate("/admin-dashboard"); // Redirect to AdminDashboard
-      } else if (username === "student") {
+      } else if (username === "user") {
         navigate("/student-dashboard"); // Redirect to StudentDashboard
       } else {
         setErrorMessage("Invalid role.");
