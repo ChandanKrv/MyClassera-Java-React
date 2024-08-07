@@ -16,7 +16,9 @@ const getAuthHeaders = () => {
 
 export const printJwtToken = () => {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   if (token) {
+    console.log("Role:", role);
     console.log("JWT Token:", token);
   } else {
     console.log("No JWT Token found in localStorage.");
@@ -35,6 +37,7 @@ export const login = async (email, password) => {
 export const logoutUser = () => {
   // Clear the local storage token
   localStorage.removeItem("token");
+  localStorage.removeItem("role");
 };
 
 // Subjects

@@ -15,7 +15,7 @@ const StudentsTable = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [newStudent, setNewStudent] = useState({ name: "", email: "" });
   const [studentToEdit, setStudentToEdit] = useState(null);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     const getStudents = async () => {

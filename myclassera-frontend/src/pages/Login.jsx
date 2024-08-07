@@ -1,12 +1,27 @@
-import { useState } from "react";
-import { login } from "../api/api"; // Ensure this imports correctly
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useState, useEffect } from "react";
+import { login } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // For error messages
-  const navigate = useNavigate(); // For programmatic navigation
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is already logged in
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if (token) {
+      // Redirect based on the stored role
+      if (role === "admin") {
+        navigate("/admin-dashboard");
+      } else if (role === "user") {
+        navigate("/student-dashboard");
+      }
+    }
+  }, [navigate]);
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -18,17 +33,23 @@ const Login = () => {
       const response = await login(email, password);
       const { jwtToken, username } = response; // Adjust according to actual response structure
 
-      // Store the JWT token in localStorage
+      // Store the JWT token and role in localStorage
       localStorage.setItem("token", jwtToken);
 
-      // Determine the role and navigate accordingly
+      // Determine the role and store it
+      let role;
       if (username === "admin") {
-        navigate("/admin-dashboard"); // Redirect to AdminDashboard
+        role = "admin";
       } else if (username === "user") {
-        navigate("/student-dashboard"); // Redirect to StudentDashboard
+        role = "user";
       } else {
         setErrorMessage("Invalid role.");
+        return;
       }
+
+      localStorage.setItem("role", role);
+      // Navigate to the appropriate dashboard
+      navigate(role === "admin" ? "/admin-dashboard" : "/student-dashboard");
     } catch (error) {
       setErrorMessage("Login failed. Please check your credentials.");
     }
