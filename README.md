@@ -58,7 +58,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
     `https://github.com/ChandanKrv/MyClassera-Java-React.git`
   - Navigate to MyClassera-Backend directory and open cmd 
   - Build the project: `mvn clean install`  [Preview](Screenshots/mvm-clean-install.png)
-  - Run the Spring Boot application: `mvn spring-boot:run` [Preview](Screenshots/mvm-springboot-run.png)
+  - Run the Spring Boot application: `mvn spring-boot:run` [Preview](Screenshots/mvn-springboot-run.png)
   - The backend will start at http://localhost:8080 [Preview](Screenshots/running-springboot.png)
     `Access Denied !! Full authentication is required to access this resource` [Preview](Screenshots/access-denied-backend.png)
     - JwtToken is required for access,so we need to setup frontend or use Postman to generate the token.
@@ -75,20 +75,27 @@ MyClassera is a web-based application that allows students to enroll in multiple
       | user     | pass     |
 
 ## Screenshots
+
+  ## For Database
+
 ### 1. Copy this db file
 ![Preview](Screenshots/h2-databsae-in-repo.png)
 
 ### 2. Paste to this location
 ![Preview](Screenshots/h2db-location.png)
 
+    ## For Backend
+
 ### 3. Launch cmd in "MyClassera-Backend" folder and build the project.
 ![Preview](Screenshots/mvm-clean-install.png)
 
 ### 4. Run the Spring Boot application
-![Preview](Screenshots/mvm-springboot-run.png)
+![Preview](Screenshots/mvn-springboot-run.png)
 
-### 1. Copy this db file
-![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+### 5. Verify if Spring boot is running fine, check port no.
+![Copy this db file](Screenshots/running-springboot.png)
+
+      ## For Frontend
 
 ### 1. Copy this db file
 ![Copy this db file](Screenshots/h2-databsae-in-repo.png)
