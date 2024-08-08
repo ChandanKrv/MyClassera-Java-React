@@ -57,7 +57,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
   - Clone or Download this project from this repository:
     `https://github.com/ChandanKrv/MyClassera-Java-React.git`
   - Navigate to MyClassera-Backend directory and open cmd 
-  - Build the project: `mvn clean install`  [Preview](Screenshots/mvm-clean-install.png)
+  - Build the project: `mvn clean install`  [Preview](Screenshots/mvn-clean-install.png)
   - Run the Spring Boot application: `mvn spring-boot:run` [Preview](Screenshots/mvn-springboot-run.png)
   - The backend will start at http://localhost:8080 [Preview](Screenshots/running-springboot.png)
     `Access Denied !! Full authentication is required to access this resource` [Preview](Screenshots/access-denied-backend.png)
@@ -74,9 +74,9 @@ MyClassera is a web-based application that allows students to enroll in multiple
       | admin    | pass     |
       | user     | pass     |
 
-## Screenshots
+# Screenshots
 
-  ## For Database
+## Database
 
 ### 1. Copy this db file
 ![Preview](Screenshots/h2-databsae-in-repo.png)
@@ -84,28 +84,45 @@ MyClassera is a web-based application that allows students to enroll in multiple
 ### 2. Paste to this location
 ![Preview](Screenshots/h2db-location.png)
 
-    ## For Backend
+## Backend
 
 ### 3. Launch cmd in "MyClassera-Backend" folder and build the project.
-![Preview](Screenshots/mvm-clean-install.png)
+![Preview](Screenshots/mvn-clean-install.png)
 
 ### 4. Run the Spring Boot application
 ![Preview](Screenshots/mvn-springboot-run.png)
 
 ### 5. Verify if Spring boot is running fine, check port no.
-![Copy this db file](Screenshots/running-springboot.png)
+![Preview](Screenshots/running-springboot.png)
 
-      ## For Frontend
+JwtToken is required for access,so we need to setup frontend or use Postman to generate the token.
+![Preview](Screenshots/access-denied-backend.png)
 
-### 1. Copy this db file
-![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+## Frontend
 
-### 1. Copy this db file
-![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+### 6. Launch cmd in "myclassera-frontend" folder and install dependencies
+![Preview](Screenshots/npm-install.png)
 
-### 1. Copy this db file
-![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+### 7. Run the React/Vite application
+![Preview](Screenshots/npm-run-dev.png)
 
+### 8. The frontend will start at http://localhost:5173 
+![Preview](Screenshots/login.png)
+
+## Dashboards Preview
+![Preview](Screenshots/admin-dashboard.png)
+
+![Preview](Screenshots/admin-dashboard-course-enroll.png)
+
+![Preview](Screenshots/subject-enrolled.png)
+
+![Preview](Screenshots/all-students.png)
+
+![Preview](Screenshots/all-subjects.png)
+
+![Preview](Screenshots/admin-dashboard.png)
+
+![Preview](Screenshots/student-dashboard.png)
 
 
 ## Project Structure
