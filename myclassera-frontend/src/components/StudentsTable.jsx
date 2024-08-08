@@ -203,7 +203,7 @@ const StudentsTable = () => {
             <form onSubmit={handleAddStudentSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 mb-2">
-                  Name
+                  Student Name
                 </label>
                 <input
                   id="name"

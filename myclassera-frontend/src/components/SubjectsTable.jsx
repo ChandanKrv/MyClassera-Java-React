@@ -160,7 +160,7 @@ const SubjectsTable = () => {
             <form onSubmit={handleAddSubjectSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 mb-2">
-                  Name
+                  Subject Name
                 </label>
                 <input
                   id="name"
