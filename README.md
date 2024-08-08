@@ -95,9 +95,9 @@ src
   - Maven
 
       **Check using these commands in cmd**
-        -For Java ```java --version```
-        -For npm  ```npm --version```
-        For Maven ```mvn --version```
+        - For Java ```java --version```
+        - For npm  ```npm --version```
+        - For Maven ```mvn --version```
 
 - **Backend Setup:**
   - Clone or Download this repository:
