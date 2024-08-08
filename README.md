@@ -86,3 +86,15 @@ src
 │   └── NotFoundPage.jsx
 └── App.jsx
 ```
+
+## Installation
+
+- **Prerequisites:**
+- JDK 19+
+- Node.js and npm
+- Maven
+- VS Code editor / Intellij Idea
+
+- **Backend Setup:**
+- Clone or Download this repository:
+```https://github.com/ChandanKrv/MyClassera-Java-React.git```
