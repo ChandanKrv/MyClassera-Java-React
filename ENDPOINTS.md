@@ -25,11 +25,11 @@
 - **GET:** `http://localhost:8080/api/student/all`
 - **Header:**
   - **Key:** Authorization
-  - **Value:** Bearer JWT_Token
+  - **Value:** Bearer `JWT_Token`
+
+**Note:** JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated JwtToken.
 
 ---
-
-    ### Note - JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated JwtToken.
 
 ### Get Enrolled Subjects for a Student
 
