@@ -62,7 +62,7 @@ src
 └── test
     └── java
         └── com.chandankrv.myclassera
-
+```
 
 ### Frontend (React + Vite)
 ```plaintext
@@ -85,3 +85,4 @@ src
 │   ├── AdminPage.jsx
 │   └── NotFoundPage.jsx
 └── App.jsx
+```
