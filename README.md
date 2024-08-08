@@ -46,6 +46,12 @@ MyClassera is a web-based application that allows students to enroll in multiple
   - Node.js and npm `npm --version`
   - Maven `mvn --version`
 
+- **H2-Database Setup (Optional):**
+  - Clone or Download this project from this repository:
+    `https://github.com/ChandanKrv/MyClassera-Java-React.git`
+  - Navigate to "Sample Database" directory copy .db file
+  - Paste .db file to your home directory. e.g. `C:\Users\<<Your_PC_Username>>` 
+
 - **Backend Setup:**
 
   - Clone or Download this project from this repository:
@@ -69,7 +75,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
       | user     | pass     |
 
 ## Screenshots
-[Login Screenshot](Screenshots/login.png)
+![Login Screenshot](Screenshots/login.png)
 
 
 
