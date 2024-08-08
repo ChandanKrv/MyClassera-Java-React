@@ -95,5 +95,9 @@ src
   - Maven     ```mvn --version```
 
 - **Backend Setup:**
-  - Clone or Download this repository:
+  - Clone or Download this project from this repository:
   ```https://github.com/ChandanKrv/MyClassera-Java-React.git```
+  - Go to MyClassera-Backend folder and launch cmd
+  - Build the project: ```mvn clean install```
+  - Run the Spring Boot application: ```mvn spring-boot:run```
+  - The backend will start at http://localhost:8080
