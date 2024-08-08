@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { VscGithubInverted } from "react-icons/vsc";
 import { AiOutlineLinkedin } from "react-icons/ai";
+import { TbWorldWww } from "react-icons/tb";
 
 const Contact = () => {
   const [result, setResult] = useState("");
@@ -40,7 +41,7 @@ const Contact = () => {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-semibold text-blue-600">Get in Touch</h1>
         <p className="text-gray-700 mt-2">
-          I'm available for new projects. Let's talk!
+          I&apos;m available for new projects. Let&apos;s talk!
         </p>
       </div>
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
@@ -68,6 +69,17 @@ const Contact = () => {
               className="text-blue-600 hover:underline"
             >
               LinkedIn
+            </a>
+          </div>
+          <div className="mb-4">
+            <TbWorldWww className="inline-block text-gray-600 text-2xl mr-2" />
+            <a
+              href="https://chandankrv.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Portfolio
             </a>
           </div>
           <div className="mb-4">

@@ -8,7 +8,7 @@ const Footer = () => {
         <p>
           &copy; {currentYear} All rights reserved. Developed with ❤️ by{" "}
           <a
-            href="https://www.linkedin.com/in/chandankrv/"
+            href="https://chandankrv.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 no-underline"
