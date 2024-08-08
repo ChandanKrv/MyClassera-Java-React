@@ -27,7 +27,7 @@
   - **Key:** Authorization
   - **Value:** Bearer `JWT_Token`
 
-**Note:** JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated JwtToken.
+**Note:** JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated actual JwtToken.
 
 ---
 
@@ -51,32 +51,22 @@
 
 ---
 
-
 ## Student Controller
 
 ### Endpoints for Students
 
 1. **Get All Students**
 
-   - **GET:** `http://localhost:8080/api/student/all`
-                - **Header:**
-                - **Key:** Authorization
-                - **Value:** Bearer JWT_Token
+   - **GET:** `http://localhost:8080/api/student/all` - **Header:** - **Key:** Authorization - **Value:** Bearer JWT_Token
 
 2. **Get a Student by ID**
 
    - **GET:** `http://localhost:8080/api/student/{id}`
-   - **Example:** `http://localhost:8080/api/student/1`
-                - **Header:**
-                - **Key:** Authorization
-                - **Value:** Bearer JWT_Token
+   - **Example:** `http://localhost:8080/api/student/1` - **Header:** - **Key:** Authorization - **Value:** Bearer JWT_Token
 
 3. **Add a Student**
 
-   - **POST:** `http://localhost:8080/api/student/add`
-                - **Header:**
-                - **Key:** Authorization
-                - **Value:** Bearer JWT_Token
+   - **POST:** `http://localhost:8080/api/student/add` - **Header:** - **Key:** Authorization - **Value:** Bearer JWT_Token
    - **Body:**
      ```json
      {
