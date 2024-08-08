@@ -90,14 +90,9 @@ src
 ## Installation
 
 - **Prerequisites:**
-  - JDK 19+
-  - Node.js and npm
-  - Maven
-
-      **Check using these commands in cmd**
-        - For Java ```java --version```
-        - For npm  ```npm --version```
-        - For Maven ```mvn --version```
+  - JDK 19+   ```java --version```
+  - Node.js and npm   ```npm --version```
+  - Maven     ```mvn --version```
 
 - **Backend Setup:**
   - Clone or Download this repository:
