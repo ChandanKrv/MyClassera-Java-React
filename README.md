@@ -90,11 +90,15 @@ src
 ## Installation
 
 - **Prerequisites:**
-- JDK 19+
-- Node.js and npm
-- Maven
-- VS Code editor / Intellij Idea
+  - JDK 19+
+  - Node.js and npm
+  - Maven
+
+      **Check using these commands in cmd**
+        -For Java ```java --version```
+        -For npm  ```npm --version```
+        For Maven ```mvn --version```
 
 - **Backend Setup:**
-- Clone or Download this repository:
-```https://github.com/ChandanKrv/MyClassera-Java-React.git```
+  - Clone or Download this repository:
+  ```https://github.com/ChandanKrv/MyClassera-Java-React.git```
