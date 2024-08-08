@@ -50,7 +50,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
   - Clone or Download this project from this repository:
     `https://github.com/ChandanKrv/MyClassera-Java-React.git`
   - Navigate to "Sample Database" directory copy .db file
-  - Paste .db file to your home directory. e.g. `C:\Users\<<Your_PC_Username>>` 
+  - Paste .db file to your home directory. e.g. `C:\Users\<<Your_PC_Username>>` [View Screenshot](Screenshots/h2db-location.png)
 
 - **Backend Setup:**
 
