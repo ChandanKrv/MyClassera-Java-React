@@ -62,3 +62,26 @@ src
 └── test
     └── java
         └── com.chandankrv.myclassera
+
+
+### Frontend (React + Vite)
+```plaintext
+src
+├── api
+│   └── api.js
+├── components
+│   ├── Layout.jsx
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── StudentsTable.jsx
+│   ├── SubjectsTable.jsx
+│   ├── EnrollInSubjects.jsx
+│   ├── ViewStudents.jsx
+│   ├── SubjectModal.jsx
+│   └── Pagination.jsx
+├── pages
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   ├── AdminPage.jsx
+│   └── NotFoundPage.jsx
+└── App.jsx
