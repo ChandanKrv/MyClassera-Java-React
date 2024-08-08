@@ -30,7 +30,6 @@ MyClassera is a comprehensive online subject/course management system. This proj
 
 ## Project Structure
 
-```plaintext
 MyClassera/
 ├── myclassera-frontend/
 │   ├── src/
@@ -44,7 +43,7 @@ MyClassera/
     ├── .gitignore
     ├── pom.xml
     └── README.md
-    ```
+ 
 
 
 **Installation and Running the Project**
