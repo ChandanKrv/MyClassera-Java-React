@@ -6,8 +6,8 @@ MyClassera is a web-based application that allows students to enroll in multiple
 
 - [Features](#features)
 - [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Endpoints and Access Control](#endpoints-and-access-control)
 - [Contributing](#contributing)
@@ -39,6 +39,34 @@ MyClassera is a web-based application that allows students to enroll in multiple
   - Lombok
   - Maven
   - React Icons
+
+## Installation
+
+- **Prerequisites:**
+  - JDK 19+   ```java --version```
+  - Node.js and npm   ```npm --version```
+  - Maven     ```mvn --version```
+
+- **Backend Setup:**
+  - Clone or Download this project from this repository:
+  ```https://github.com/ChandanKrv/MyClassera-Java-React.git```
+  - Navigate to MyClassera-Backend directory and open cmd
+  - Build the project: ```mvn clean install```
+  - Run the Spring Boot application: ```mvn spring-boot:run```
+  - The backend will start at http://localhost:8080
+    ```Access Denied !! Full authentication is required to access this resource```
+    - JwtToken is required for access,so we need to setup frontend or use Postman to generate the token.
+
+- **Frontend Setup:**
+  - Navigate to myclassera-frontend directory and open cmd
+  - Install dependencies: ```npm install```
+  - Run the React/Vite application: ```npm run dev```
+  - The frontend will start at http://localhost:5173
+  - Navigate to this URL, Use these Login Credentials
+    - | Username | Password |
+      |----------|----------|
+      | admin    | pass     |
+      | user     | pass     |  
 
 ## Project Structure
 
@@ -87,30 +115,4 @@ src
 └── App.jsx
 ```
 
-## Installation
 
-- **Prerequisites:**
-  - JDK 19+   ```java --version```
-  - Node.js and npm   ```npm --version```
-  - Maven     ```mvn --version```
-
-- **Backend Setup:**
-  - Clone or Download this project from this repository:
-  ```https://github.com/ChandanKrv/MyClassera-Java-React.git```
-  - Navigate to MyClassera-Backend directory and open cmd
-  - Build the project: ```mvn clean install```
-  - Run the Spring Boot application: ```mvn spring-boot:run```
-  - The backend will start at http://localhost:8080
-    ```Access Denied !! Full authentication is required to access this resource```
-    - JwtToken is required for access,so we need to setup frontend or use Postman to generate the token.
-
-- **Frontend Setup:**
-  - Navigate to myclassera-frontend directory and open cmd
-  - Install dependencies: ```npm install```
-  - Run the React/Vite application: ```npm run dev```
-  - The frontend will start at http://localhost:5173
-  - Navigate to this URL, Use these Login Credentials
-    - | Username | Password |
-      |----------|----------|
-      | admin    | pass     |
-      | user     | pass     |
