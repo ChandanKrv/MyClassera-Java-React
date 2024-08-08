@@ -51,7 +51,7 @@ const Login = () => {
       // Navigate to the appropriate dashboard
       navigate(role === "admin" ? "/admin-dashboard" : "/student-dashboard");
     } catch (error) {
-      setErrorMessage("Login failed. Try again later");
+      setErrorMessage("Login failed. It seems server isn't started yet.");
     }
   };
 
@@ -90,7 +90,7 @@ const Login = () => {
         <div className="bg-white p-8 shadow-lg rounded-lg max-w-md w-full">
           <p className="text-gray-700">
             <h3 className="text-m  text-gray-700 font-semibold mb-4">
-              Login credentials
+              Login credentials for demo
             </h3>
             <table class="min-w-max text-center bg-white border border-gray-300 rounded-lg">
               <thead>

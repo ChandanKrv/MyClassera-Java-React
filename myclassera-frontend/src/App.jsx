@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import AccessDenied from "./pages/AccessDenied";
 import Logout from "./pages/Logout";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import the ProtectedRoute component
+import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
           <Route path={"/"} element={<Login />} />
           <Route path={"/login"} element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+
           <Route path="/access-denied" element={<AccessDenied />} />
           <Route
             path="/admin-dashboard"
