@@ -101,3 +101,5 @@ src
   - Build the project: ```mvn clean install```
   - Run the Spring Boot application: ```mvn spring-boot:run```
   - The backend will start at http://localhost:8080
+    ```Access Denied !! Full authentication is required to access this resource```
+    - JwtToken is required for access, need to setup frontend now.
