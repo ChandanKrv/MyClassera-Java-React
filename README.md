@@ -291,3 +291,6 @@ src
    - **GET:** `http://localhost:8080/api/subject/{id}/students`
    - **Example:** `http://localhost:8080/api/subject/1/students`
 
+## Thank You
+
+© 2024 All rights reserved. Developed with ❤️ by Chandan Kumar.
