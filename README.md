@@ -8,10 +8,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
-- [Usage](#usage)
-- [Endpoints and Access Control](#endpoints-and-access-control)
-- [Contributing](#contributing)
-- [License](#license)
+- [API - Endpoints and Access Control](#endpoints-and-access-control)
 
 ## Features
 
@@ -114,5 +111,31 @@ src
 │   └── NotFoundPage.jsx
 └── App.jsx
 ```
+
+# Endpoints and Access Control
+
+## JWT Token Generation
+
+- **URL:** `http://localhost:8080/auth/login`
+- **Method:** POST
+- **Roles:** PUBLIC
+
+## Get All Students
+
+- **URL:** `http://localhost:8080/api/student/all`
+- **Method:** GET
+- **Roles:** ADMIN, USER
+
+## Get Enrolled Subjects for a Student
+
+- **URL:** `http://localhost:8080/api/student/{id}/subjects`
+- **Method:** GET
+- **Roles:** ADMIN, USER
+
+## Add a Subject
+
+- **URL:** `http://localhost:8080/api/subject/add`
+- **Method:** POST
+- **Roles:** ADMIN
 
 
