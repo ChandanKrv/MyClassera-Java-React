@@ -44,6 +44,7 @@ MyClassera/
     ├── .gitignore
     ├── pom.xml
     └── README.md
+    ```
 
 
 **Installation and Running the Project**
