@@ -7,6 +7,7 @@ MyClassera is a web-based application that allows students to enroll in multiple
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
+- [Screenshots](#screenshots)
 - [Project Structure](#project-structure)
 - [API - Endpoints and Access Control](#API-endpoints-and-access-control)
 
