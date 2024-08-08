@@ -67,6 +67,11 @@ MyClassera is a web-based application that allows students to enroll in multiple
       | admin    | pass     |
       | user     | pass     |
 
+## Screenshots
+![Login Screenshot](Screenshots/login.png)
+
+
+
 ## Project Structure
 
 ### Backend (Spring Boot)
