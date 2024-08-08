@@ -49,33 +49,33 @@ MyClassera is a web-based application that allows students to enroll in multiple
 - **H2-Database Setup (Optional):**
   - Clone or Download this project from this repository:
     `https://github.com/ChandanKrv/MyClassera-Java-React.git`
-  - Navigate to "Sample Database" directory copy .db file
-  - Paste .db file to your home directory. e.g. `C:\Users\<<Your_PC_Username>>` [View Screenshot](Screenshots/h2db-location.png)
+  - Navigate to "Sample Database" directory copy .db file [Preview](Screenshots/h2-databsae-in-repo.png)
+  - Paste .db file to your home directory. e.g. `C:\Users\<<Your_PC_Username>>` [Preview](Screenshots/h2db-location.png)
 
 - **Backend Setup:**
 
   - Clone or Download this project from this repository:
     `https://github.com/ChandanKrv/MyClassera-Java-React.git`
-  - Navigate to MyClassera-Backend directory and open cmd
-  - Build the project: `mvn clean install`
-  - Run the Spring Boot application: `mvn spring-boot:run`
-  - The backend will start at http://localhost:8080
-    `Access Denied !! Full authentication is required to access this resource`
+  - Navigate to MyClassera-Backend directory and open cmd 
+  - Build the project: `mvn clean install`  [Preview](Screenshots/mvm-clean-install.png)
+  - Run the Spring Boot application: `mvn spring-boot:run` [Preview](Screenshots/mvm-springboot-run.png)
+  - The backend will start at http://localhost:8080 [Preview](Screenshots/running-springboot.png)
+    `Access Denied !! Full authentication is required to access this resource` [Preview](Screenshots/access-denied-backend.png)
     - JwtToken is required for access,so we need to setup frontend or use Postman to generate the token.
 
 - **Frontend Setup:**
   - Navigate to myclassera-frontend directory and open cmd
-  - Install dependencies: `npm install`
-  - Run the React/Vite application: `npm run dev`
-  - The frontend will start at http://localhost:5173
+  - Install dependencies: `npm install` [Preview](Screenshots/npm-install.png)
+  - Run the React/Vite application: `npm run dev` [Preview](Screenshots/npm-run-dev.png)
+  - The frontend will start at http://localhost:5173  [Preview](Screenshots/login.png)
   - Navigate to this URL, Use these Login Credentials
     - | Username | Password |
       | -------- | -------- |
       | admin    | pass     |
       | user     | pass     |
 
-## Screenshots
-![Login Screenshot](Screenshots/login.png)
+## Project Setup Screenshots
+![Copy this db file](Screenshots/h2-databsae-in-repo.png)
 
 
 
