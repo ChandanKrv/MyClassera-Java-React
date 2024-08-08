@@ -24,16 +24,16 @@ MyClassera is a web-based application that allows students to enroll in multiple
 ## Technology Stack
 
 - **Backend:**
-  - Java 11
+  - Java 21 LTS
   - Spring Boot
   - Spring Security
   - Spring Data JPA
   - H2 Database (In-memory)
   - JWT for authentication
 - **Frontend:**
-  - React
-  - Vite
-  - Tailwind CSS
+  - React 18.3.1
+  - Vite 5.3.4
+  - Tailwind CSS 3.4.7
   - Axios for HTTP requests
 - **Tools & Libraries:**
   - Lombok
@@ -48,9 +48,10 @@ MyClassera is a web-based application that allows students to enroll in multiple
 src
 ├── main
 │   ├── java
-│   │   └── com.myclassera
+│   │   └── com.chandankrv.myclassera
 │   │       ├── config
 │   │       ├── controller
+│   │       ├── exception
 │   │       ├── model
 │   │       ├── repository
 │   │       ├── service
@@ -60,4 +61,4 @@ src
 │       └── data.sql
 └── test
     └── java
-        └── com.myclassera
+        └── com.chandankrv.myclassera
