@@ -76,6 +76,27 @@ MyClassera is a web-based application that allows students to enroll in multiple
 
 ## Screenshots
 ### 1. Copy this db file
+![Preview](Screenshots/h2-databsae-in-repo.png)
+
+### 2. Paste to this location
+![Preview](Screenshots/h2db-location.png)
+
+### 3. Launch cmd in "MyClassera-Backend" folder and build the project.
+![Preview](Screenshots/mvm-clean-install.png)
+
+### 4. Run the Spring Boot application
+![Preview](Screenshots/mvm-springboot-run.png)
+
+### 1. Copy this db file
+![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+
+### 1. Copy this db file
+![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+
+### 1. Copy this db file
+![Copy this db file](Screenshots/h2-databsae-in-repo.png)
+
+### 1. Copy this db file
 ![Copy this db file](Screenshots/h2-databsae-in-repo.png)
 
 
