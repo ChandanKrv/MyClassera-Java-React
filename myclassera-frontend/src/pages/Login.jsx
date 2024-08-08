@@ -55,6 +55,12 @@ const Login = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gray-100 p-6">
       <div className="flex flex-col items-center space-y-8">
@@ -67,6 +73,7 @@ const Login = () => {
             placeholder="Username or Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="block w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg"
             required
           />
@@ -75,6 +82,7 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="block w-full mb-6 px-4 py-3 border border-gray-300 rounded-lg"
             required
           />
