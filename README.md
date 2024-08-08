@@ -146,9 +146,10 @@ src
 
 ---
 
-    ### Note - JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated JwtToken.
+### Note:- JwtToken is always required for all APIs, As shown above replace `JWT_Token` with generated JwtToken.
 
-For a detailed summary of all endpoints and their access control, refer to the ENDPOINTS.md file.
+For detailed information on all API endpoints, please refer to the [ENDPOINTS.md](ENDPOINTS.md) file.
+
 
 
 
